@@ -1,9 +1,11 @@
 import os
+
+os.environ["HF_HOME"] = ".hf/hf_home"
+
 from itertools import islice
 
 from datasets import load_dataset
 
-os.environ["HF_HOME"] = ".hf/hf_home"
 
 from dotenv import load_dotenv
 from transformers import AutoModelForCausalLM, AutoTokenizer
