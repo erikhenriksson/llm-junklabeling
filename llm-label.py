@@ -57,7 +57,7 @@ def generate_responses(windows):
 
     # Generate responses for the batch
     outputs = model.generate(
-        **inputs, do_sample=True, temperature=0.01, max_new_tokens=128
+        **inputs, do_sample=True, temperature=0.01, max_new_tokens=64
     )
 
     # Decode the batch of outputs
