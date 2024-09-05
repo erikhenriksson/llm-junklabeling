@@ -1,11 +1,11 @@
 import os
+import json
 
 os.environ["HF_HOME"] = ".hf/hf_home"
 
 from itertools import islice
 
 from datasets import load_dataset
-
 
 from dotenv import load_dotenv
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -14,20 +14,26 @@ from prompts import SYSTEM
 
 load_dotenv()
 
-access_token = os.getenv("HUGGINGFACE_ACCESS_TOKEN", "")
-model_id = "meta-llama/Meta-Llama-3.1-8B-Instruct"
-tokenizer = AutoTokenizer.from_pretrained(model_id, token=access_token)
-model = AutoModelForCausalLM.from_pretrained(
-    model_id,
-    token=access_token,
-    device_map="auto",
-)
 
-if tokenizer.pad_token is None:
-    tokenizer.pad_token = tokenizer.eos_token
+access_token = os.getenv("HUGGINGFACE_ACCESS_TOKEN", "")
+testing = os.getenv("TEST")
+if not testing:
+    model_id = "meta-llama/Meta-Llama-3.1-8B-Instruct"
+    tokenizer = AutoTokenizer.from_pretrained(model_id, token=access_token)
+    model = AutoModelForCausalLM.from_pretrained(
+        model_id,
+        token=access_token,
+        device_map="auto",
+    )
+
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
 
 
 def generate_responses(windows):
+
+    if testing:
+        return ["This is a sample response"] * len(windows)
 
     messages = [
         [
@@ -111,22 +117,28 @@ def generate_all_windows(document, window_size=2):
 
 # Load the dataset by streaming
 dataset_url = "HuggingFaceFW/fineweb"
+output_file = "output/fineweb_annotated.jsonl"
 dataset = load_dataset(dataset_url, split="train", streaming=True)
-data_sample = list(islice(dataset, 100))
+data_sample = list(islice(dataset, 1000))
+
+annotated_ids = set()
+with open(output_file, "r", encoding="utf-8") as jsonl_file:
+    for line in jsonl_file:
+        row = json.loads(line)
+        if "id" in row:
+            annotated_ids.add(row["id"])
 
 # Initialize a batch collection list
 batch_size = 8
 
-
-# Iterate through the first 100 rows and generate windows
+# Process each row in the data sample
 for row in data_sample:
-
-    text_id = row["id"]
-    lines = row["text"].split("\n")
-    windows = generate_all_windows(lines, 2)
+    if row.get("id") in annotated_ids:
+        continue
+    windows = generate_all_windows(row["text"].split("\n"), 2)
     text_annotations = []
     batch = []
-    # Add each generated window to the batch collection
+    # Add each generated window to the batch
     for window in windows:
         batch.append(window)
 
@@ -139,5 +151,8 @@ for row in data_sample:
     if batch:
         text_annotations += generate_responses(batch)
 
-    print(text_annotations)
-    exit()
+    row["llm_junk_annotations"] = text_annotations
+
+    # Convert the row to JSON and write to the file
+    with open(output_file, "a", encoding="utf-8") as jsonl_file:
+        jsonl_file.write(json.dumps(row, ensure_ascii=False) + "\n")
