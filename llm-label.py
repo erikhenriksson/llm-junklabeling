@@ -117,7 +117,7 @@ def generate_all_windows(document, window_size=2):
 
 # Load the dataset by streaming
 dataset_url = "HuggingFaceFW/fineweb"
-output_file = "output/fineweb_annotated.jsonl"
+output_file = "output/fineweb_annotated_2.jsonl"
 dataset = load_dataset(dataset_url, split="train", streaming=True)
 data_sample = list(islice(dataset, 1000))
 
