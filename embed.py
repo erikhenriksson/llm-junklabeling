@@ -5,7 +5,7 @@ from collections import Counter
 keyphrases_counter = Counter()
 
 # Path to the JSONL file
-file_path = "output/fineweb_annotated.jsonl"
+file_path = "output/fineweb_annotated_2.jsonl"
 
 # Read the JSONL file and process each line
 with open(file_path, "r") as file:

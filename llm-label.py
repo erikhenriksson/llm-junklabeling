@@ -10,7 +10,7 @@ from datasets import load_dataset
 from dotenv import load_dotenv
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from prompts import SYSTEM
+from prompts_backup2 import SYSTEM
 
 load_dotenv()
 
@@ -117,7 +117,7 @@ def generate_all_windows(document, window_size=2):
 
 # Load the dataset by streaming
 dataset_url = "HuggingFaceFW/fineweb"
-output_file = "output/fineweb_annotated_2.jsonl"
+output_file = "output/fineweb_annotated_3.jsonl"
 dataset = load_dataset(dataset_url, split="train", streaming=True)
 data_sample = list(islice(dataset, 1000))
 
