@@ -129,7 +129,7 @@ with open(output_file, "r", encoding="utf-8") as jsonl_file:
             annotated_ids.add(row["id"])
 
 # Initialize a batch collection list
-batch_size = 8
+batch_size = 4
 
 # Process each row in the data sample
 for row in data_sample:
