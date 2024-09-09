@@ -6,7 +6,7 @@ CRITICAL INSTRUCTIONS:
 1. You must ONLY classify the text between [TARGET_START] and [TARGET_END]. 
 2. The context lines provided before and after the target are for understanding the surrounding content ONLY. Never use the context lines in your classification or labeling decision. 
 3. Your labels must reflect ONLY what is found within the target tags.
-4. [DOC_START] and [DOC_END] tags may be present to denote the beginning and end of a document. These are for context only and should not influence your classification of the target line.
+4. [DOC_START] and [DOC_END] tags may be present to denote the beginning and end of a document. These are for context only and should  not influence your classification of the target line.
 
 Instructions:
 1. Analyze ONLY the given line of text marked with [TARGET_START] and [TARGET_END].
