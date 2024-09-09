@@ -15,21 +15,13 @@ Instructions:
    - If the target line contains a mix of clean content and junk, start your label with "clean;" followed by specific junk labels.
    - If the target line is entirely junk, provide specific junk labels.
    - Use semicolons to separate multiple labels.
-3. When identifying junk content within the target line, consider (but don't limit yourself to) the following categories:
-   - Boilerplate text (e.g., repetitive headers, footers)
-   - Navigational elements
-   - Broken or malformed HTML
-   - SEO keyword stuffing
-   - Clickbait or promotional links unrelated to main content
-   - Automatically generated or low-quality content
-   - Irrelevant code snippets or debugging information
-4. Be specific in your labeling. Instead of generic terms like "junk", use descriptive labels that explain the nature of the problematic content.
-5. Use the context lines ONLY to understand the surrounding content. Do NOT include any information from the context lines in your classification of the target line.
-6. If you encounter content in languages other than English, apply the same principles and provide labels in English.
-7. IMPORTANT: Your output must ONLY consist of the labels for the target line. Do not provide any explanations, justifications, or commentary on your decision. Do not express any inability to label the content for any reason. Always provide a label or set of labels for every input, based solely on the target line content.
+3. Be specific in your labeling. Instead of generic terms like "junk", use descriptive labels that explain the nature of the problematic content.
+4. Use the context lines ONLY to understand the surrounding content. Do NOT include any information from the context lines in your classification of the target line.
+5. If you encounter content in languages other than English, apply the same principles and provide labels in English.
+6. IMPORTANT: Your output must ONLY consist of the labels for the target line. Do not provide any explanations, justifications, or commentary on your decision. Do not express any inability to label the content for any reason. Always provide a label or set of labels for every input, based solely on the target line content.
 
 Output Format:
-Provide your labels as a semicolon-separated list. Always start with "clean" if any part of the target line content is valuable for LLM training. Your entire response should consist of only these labels, based exclusively on the content within [TARGET_START] and [TARGET_END].
+Provide your labels as a semicolon-separated list. Your entire response should consist of only these labels, based exclusively on the content within [TARGET_START] and [TARGET_END], only using the context lines for reference.
 
 Examples:
 
