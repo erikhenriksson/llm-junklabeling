@@ -1,0 +1,541 @@
+clean,1.000 1.000 1.000 1.000
+journalistic content,1.000 1.000 1.000 1.000
+promotional links,1.000 1.000 1.000 1.000
+tweets,1.000 1.000 1.000 1.000
+metadata,1.000 1.000 1.000 1.000
+byline,1.000 1.000 1.000 1.000
+promotional content,1.000 1.000 1.000 1.000
+copyright notice,1.000 1.000 1.000 1.000
+legal notice,1.000 1.000 1.000 1.000
+informal language,1.000 1.000 1.000 1.000
+personal anecdote,1.000 1.000 1.000 1.000
+humorous analogy,1.000 1.000 1.000 1.000
+tunnel vision,1.000 1.000 1.000 1.000
+promotional language,1.000 1.000 1.000 1.000
+exaggeration,1.000 1.000 1.000 1.000
+personification,1.000 1.000 1.000 1.000
+self-promotional content,1.000 1.000 1.000 1.000
+affiliate link,1.000 1.000 1.000 1.000
+personal endorsement,1.000 1.000 1.000 1.000
+personal appeal,1.000 1.000 1.000 1.000
+fundraising appeal,1.000 1.000 1.000 1.000
+medical information,1.000 1.000 1.000 1.000
+personal information,1.000 1.000 1.000 1.000
+contact information,1.000 1.000 1.000 1.000
+login form,1.000 1.000 1.000 1.000
+password reset request,1.000 1.000 1.000 1.000
+water resistant claims,1.000 1.000 1.000 1.000
+submersible claims,1.000 1.000 1.000 1.000
+promotional link,1.000 1.000 1.000 1.000
+poetic language,1.000 1.000 1.000 1.000
+junk language,1.000 1.000 1.000 1.000
+junk advertising,1.000 1.000 1.000 1.000
+sports news,1.000 1.000 1.000 1.000
+opinionated commentary,1.000 1.000 1.000 1.000
+sports commentary,1.000 1.000 1.000 1.000
+exaggerated language,1.000 1.000 1.000 1.000
+scoreboard information,1.000 1.000 1.000 1.000
+numerical data,1.000 1.000 1.000 1.000
+sports statistics,1.000 1.000 1.000 1.000
+navigational menu,1.000 1.000 1.000 1.000
+team statistics,1.000 1.000 1.000 1.000
+self-promotion,1.000 1.000 1.000 1.000
+biographical information,1.000 1.000 1.000 1.000
+unrelated mention,1.000 1.000 1.000 1.000
+entry requirements,1.000 1.000 1.000 1.000
+video content,1.000 1.000 1.000 1.000
+call to action,1.000 1.000 1.000 1.000
+self-promotional links,1.000 1.000 1.000 1.000
+shipping information,1.000 1.000 1.000 1.000
+moderation rules,1.000 1.000 1.000 1.000
+legalese,1.000 1.000 1.000 1.000
+rules,1.000 1.000 1.000 1.000
+404 error,1.000 1.000 1.000 1.000
+capitalization emphasis,1.000 1.000 1.000 1.000
+philosophical content,1.000 1.000 1.000 1.000
+conspiratorial claims,1.000 1.000 1.000 1.000
+new age promotional content,1.000 1.000 1.000 1.000
+astrological references,1.000 1.000 1.000 1.000
+conspiracy theory,1.000 1.000 1.000 1.000
+inspirational quote,1.000 1.000 1.000 1.000
+junk,1.000 1.000 1.000 1.000
+speculative language,1.000 1.000 1.000 1.000
+financial information,1.000 1.000 1.000 1.000
+advertising language,1.000 1.000 1.000 1.000
+financial data,1.000 1.000 1.000 1.000
+affiliate links,1.000 1.000 1.000 1.000
+privacy policy,1.000 1.000 1.000 1.000
+product links,1.000 1.000 1.000 1.000
+commercial content,1.000 1.000 1.000 1.000
+personalized advertising,1.000 1.000 1.000 1.000
+trademark information,1.000 1.000 1.000 1.000
+phone number,1.000 1.000 1.000 1.000
+copyright information,1.000 1.000 1.000 1.000
+disclaimer,1.000 1.000 1.000 1.000
+trademark notice,1.000 1.000 1.000 1.000
+historical reference,1.000 1.000 1.000 1.000
+social commentary,1.000 1.000 1.000 1.000
+editorializing,1.000 1.000 1.000 1.000
+narrative device,1.000 1.000 1.000 1.000
+reality tv,1.000 1.000 1.000 1.000
+promotional sensationalism,1.000 1.000 1.000 1.000
+editorial opinion,1.000 1.000 1.000 1.000
+circus atmosphere,1.000 1.000 1.000 1.000
+ad hominem attack,1.000 1.000 1.000 1.000
+rhetorical question,1.000 1.000 1.000 1.000
+informal tone,1.000 1.000 1.000 1.000
+photography related content,1.000 1.000 1.000 1.000
+informal content,1.000 1.000 1.000 1.000
+personal contact information,1.000 1.000 1.000 1.000
+social media links,1.000 1.000 1.000 1.000
+self-promotional link,1.000 1.000 1.000 1.000
+personal solicitation,1.000 1.000 1.000 1.000
+photographer credits,1.000 1.000 1.000 1.000
+product description,1.000 1.000 1.000 1.000
+spam,1.000 1.000 1.000 1.000
+unprofessional language,1.000 1.000 1.000 1.000
+embedded media,1.000 1.000 1.000 1.000
+financial news,1.000 1.000 1.000 1.000
+personal opinion,1.000 1.000 1.000 1.000
+unverified information,1.000 1.000 1.000 1.000
+external links,1.000 1.000 1.000 1.000
+social media link,1.000 1.000 1.000 1.000
+traffic updates,1.000 1.000 1.000 1.000
+social media,1.000 1.000 1.000 1.000
+false information,1.000 1.000 1.000 1.000
+inaccurate statement,1.000 1.000 1.000 1.000
+inaccurate information,1.000 1.000 1.000 1.000
+conflicting statements,1.000 1.000 1.000 1.000
+administrative error,1.000 1.000 1.000 1.000
+humorous speculation,1.000 1.000 1.000 1.000
+operational hours,1.000 1.000 1.000 1.000
+promotional deadline,1.000 1.000 1.000 1.000
+opinionated content,1.000 1.000 1.000 1.000
+historical context,1.000 1.000 1.000 1.000
+legislative text,1.000 1.000 1.000 1.000
+governmental information,1.000 1.000 1.000 1.000
+governmental agencies,1.000 1.000 1.000 1.000
+list item,1.000 1.000 1.000 1.000
+abbreviations,1.000 1.000 1.000 1.000
+research results,1.000 1.000 1.000 1.000
+research paper,1.000 1.000 1.000 1.000
+technical terms,1.000 1.000 1.000 1.000
+academic writing,1.000 1.000 1.000 1.000
+research methodology,1.000 1.000 1.000 1.000
+academic jargon,1.000 1.000 1.000 1.000
+research results discussion,1.000 1.000 1.000 1.000
+research methodology description,1.000 1.000 1.000 1.000
+research paper abstract,1.000 1.000 1.000 1.000
+anxiety symptoms,1.000 1.000 1.000 1.000
+refusal to participate in activities,1.000 1.000 1.000 1.000
+symptoms,1.000 1.000 1.000 1.000
+medical content,1.000 1.000 1.000 1.000
+hyperactivity,1.000 1.000 1.000 1.000
+constant movement,1.000 1.000 1.000 1.000
+fidgeting,1.000 1.000 1.000 1.000
+attention deficit,1.000 1.000 1.000 1.000
+self harm threats,1.000 1.000 1.000 1.000
+aggressive behavior,1.000 1.000 1.000 1.000
+mental health,1.000 1.000 1.000 1.000
+child behavioral issues,1.000 1.000 1.000 1.000
+mental health symptoms,1.000 1.000 1.000 1.000
+suicidal threats,1.000 1.000 1.000 1.000
+suicidal ideation,1.000 1.000 1.000 1.000
+mental health concerns,1.000 1.000 1.000 1.000
+mental health warning,1.000 1.000 1.000 1.000
+self-harm warning,1.000 1.000 1.000 1.000
+sexual content,1.000 1.000 1.000 1.000
+self harm,1.000 1.000 1.000 1.000
+adult themes,1.000 1.000 1.000 1.000
+inappropriate content,1.000 1.000 1.000 1.000
+mental health content,1.000 1.000 1.000 1.000
+mood swings,1.000 1.000 1.000 1.000
+mental health issues,1.000 1.000 1.000 1.000
+substance abuse,1.000 1.000 1.000 1.000
+self-harm threats,1.000 1.000 1.000 1.000
+eating disorder,1.000 1.000 1.000 1.000
+harm to others,1.000 1.000 1.000 1.000
+self-harm,1.000 1.000 1.000 1.000
+suicidal content,1.000 1.000 1.000 1.000
+self-destructive behavior,1.000 1.000 1.000 1.000
+violent behavior,1.000 1.000 1.000 1.000
+antisocial behavior,1.000 1.000 1.000 1.000
+aggressive language,1.000 1.000 1.000 1.000
+violence threats,1.000 1.000 1.000 1.000
+unusual behaviors,1.000 1.000 1.000 1.000
+navigational links,1.000 1.000 1.000 1.000
+legal disclaimer,1.000 1.000 1.000 1.000
+permissions information,1.000 1.000 1.000 1.000
+hate speech,1.000 1.000 1.000 1.000
+homophobic content,1.000 1.000 1.000 1.000
+unsubstantiated health claim,1.000 1.000 1.000 1.000
+image link,1.000 1.000 1.000 1.000
+external link,1.000 1.000 1.000 1.000
+sensational headlines,1.000 1.000 1.000 1.000
+author information,1.000 1.000 1.000 1.000
+investigative reporting,1.000 1.000 1.000 1.000
+political figure mention,1.000 1.000 1.000 1.000
+political references,1.000 1.000 1.000 1.000
+racist agendas,1.000 1.000 1.000 1.000
+political information,1.000 1.000 1.000 1.000
+conflict information,1.000 1.000 1.000 1.000
+political affiliations,1.000 1.000 1.000 1.000
+historical information,1.000 1.000 1.000 1.000
+suicide mention,1.000 1.000 1.000 1.000
+informative content,1.000 1.000 1.000 1.000
+promotional reference,1.000 1.000 1.000 1.000
+unverified sources,1.000 1.000 1.000 1.000
+sensational claims,1.000 1.000 1.000 1.000
+political claims,1.000 1.000 1.000 1.000
+political propaganda,1.000 1.000 1.000 1.000
+organizational affiliation,1.000 1.000 1.000 1.000
+terrorist organization mention,1.000 1.000 1.000 1.000
+conflict-related content,1.000 1.000 1.000 1.000
+conflict-related information,1.000 1.000 1.000 1.000
+aviation database reference,1.000 1.000 1.000 1.000
+presidential aircraft,1.000 1.000 1.000 1.000
+front company,1.000 1.000 1.000 1.000
+commercial aviation database,1.000 1.000 1.000 1.000
+freeze list,1.000 1.000 1.000 1.000
+aliases,1.000 1.000 1.000 1.000
+passport forgery,1.000 1.000 1.000 1.000
+organized crime,1.000 1.000 1.000 1.000
+allegations,1.000 1.000 1.000 1.000
+speculative claims,1.000 1.000 1.000 1.000
+potential propaganda,1.000 1.000 1.000 1.000
+contractual information,1.000 1.000 1.000 1.000
+drug smuggling claims,1.000 1.000 1.000 1.000
+speculative content,1.000 1.000 1.000 1.000
+arms purchase information,1.000 1.000 1.000 1.000
+political commentary,1.000 1.000 1.000 1.000
+waiting list,1.000 1.000 1.000 1.000
+commercial offer,1.000 1.000 1.000 1.000
+academic language,1.000 1.000 1.000 1.000
+specialized vocabulary,1.000 1.000 1.000 1.000
+scientific jargon,1.000 1.000 1.000 1.000
+testimonial,1.000 1.000 1.000 1.000
+junk content,1.000 1.000 1.000 1.000
+magical thinking,1.000 1.000 1.000 1.000
+promotional story,1.000 1.000 1.000 1.000
+estadunidismos,1.000 1.000 1.000 1.000
+non-standard spellings,1.000 1.000 1.000 1.000
+brand name reference,1.000 1.000 1.000 1.000
+jargon,1.000 1.000 1.000 1.000
+regionalisms,1.000 1.000 1.000 1.000
+regionalism,1.000 1.000 1.000 1.000
+colloquialism,1.000 1.000 1.000 1.000
+idiomatic expression,1.000 1.000 1.000 1.000
+celebrity gossip,1.000 1.000 1.000 1.000
+family feud,1.000 1.000 1.000 1.000
+television show mentions,1.000 1.000 1.000 1.000
+quotations,1.000 1.000 1.000 1.000
+personnel description,1.000 1.000 1.000 1.000
+drama,1.000 1.000 1.000 1.000
+humor,1.000 1.000 1.000 1.000
+fictional reference,1.000 1.000 1.000 1.000
+personal data,1.000 1.000 1.000 1.000
+profanity,1.000 1.000 1.000 1.000
+excessive noise,1.000 1.000 1.000 1.000
+donation solicitation,1.000 1.000 1.000 1.000
+address,1.000 1.000 1.000 1.000
+tax information,1.000 1.000 1.000 1.000
+celebrity reference,1.000 1.000 1.000 1.000
+name dropping,1.000 1.000 1.000 1.000
+violent content,1.000 1.000 1.000 1.000
+corporate advertising,1.000 1.000 1.000 1.000
+self-abuse description,1.000 1.000 1.000 1.000
+sexual abuse,1.000 1.000 1.000 1.000
+addiction,1.000 1.000 1.000 1.000
+traumatic content,1.000 1.000 1.000 1.000
+opinionated statement,1.000 1.000 1.000 1.000
+quotation,1.000 1.000 1.000 1.000
+fantastical statement,1.000 1.000 1.000 1.000
+unrelated information,1.000 1.000 1.000 1.000
+controversial statement,1.000 1.000 1.000 1.000
+clickbait,1.000 1.000 1.000 1.000
+news article,1.000 1.000 1.000 1.000
+breaking news,1.000 1.000 1.000 1.000
+suicide notes,1.000 1.000 1.000 1.000
+suicide,1.000 1.000 1.000 1.000
+disturbing content,1.000 1.000 1.000 1.000
+graphic description,1.000 1.000 1.000 1.000
+self-referential content,1.000 1.000 1.000 1.000
+suicide pact,1.000 1.000 1.000 1.000
+online suicide pact,1.000 1.000 1.000 1.000
+statistical data,1.000 1.000 1.000 1.000
+numerical information,1.000 1.000 1.000 1.000
+expert quote,1.000 1.000 1.000 1.000
+materialistic content,1.000 1.000 1.000 1.000
+anti-social content,1.000 1.000 1.000 1.000
+chat sites,1.000 1.000 1.000 1.000
+suicide communities,1.000 1.000 1.000 1.000
+threatening language,1.000 1.000 1.000 1.000
+nationalistic rhetoric,1.000 1.000 1.000 1.000
+partisan rhetoric,1.000 1.000 1.000 1.000
+satire,1.000 1.000 1.000 1.000
+potential sentence information,1.000 1.000 1.000 1.000
+legal terminology,1.000 1.000 1.000 1.000
+judicial information,1.000 1.000 1.000 1.000
+unverified medical claims,1.000 1.000 1.000 1.000
+blast from the past,1.000 1.000 1.000 1.000
+celebrity news,1.000 1.000 1.000 1.000
+personal anecdotes,1.000 1.000 1.000 1.000
+humorous anecdotes,1.000 1.000 1.000 1.000
+anecdotal content,1.000 1.000 1.000 1.000
+personal opinions,1.000 1.000 1.000 1.000
+login links,1.000 1.000 1.000 1.000
+password reset instructions,1.000 1.000 1.000 1.000
+registration prompt,1.000 1.000 1.000 1.000
+password prompt,1.000 1.000 1.000 1.000
+feedburner link,1.000 1.000 1.000 1.000
+registration link,1.000 1.000 1.000 1.000
+metaphysical,1.000 1.000 1.000 1.000
+ontological,1.000 1.000 1.000 1.000
+poetic,1.000 1.000 1.000 1.000
+self-referential,1.000 1.000 1.000 1.000
+philosophical,1.000 1.000 1.000 1.000
+existential,1.000 1.000 1.000 1.000
+instructions,1.000 1.000 1.000 1.000
+technical jargon,1.000 1.000 1.000 1.000
+domain-specific terminology,1.000 1.000 1.000 1.000
+domain-specific language,1.000 1.000 1.000 1.000
+complexity discussion,1.000 1.000 1.000 1.000
+philosophical musings,1.000 1.000 1.000 1.000
+philosophical quote,1.000 1.000 1.000 1.000
+domain specific language,1.000 1.000 1.000 1.000
+structural inequality,1.000 1.000 1.000 1.000
+behavioral management,1.000 1.000 1.000 1.000
+takeover code,1.000 1.000 1.000 1.000
+regulatory text,1.000 1.000 1.000 1.000
+exemption description,1.000 1.000 1.000 1.000
+jurisdictional information,1.000 1.000 1.000 1.000
+inducement fee and break fee arrangements,1.000 1.000 1.000 1.000
+offer-related arrangements,1.000 1.000 1.000 1.000
+implementation agreements,1.000 1.000 1.000 1.000
+legal jargon,1.000 1.000 1.000 1.000
+commercially sensitive information,1.000 1.000 1.000 1.000
+regulatory statement,1.000 1.000 1.000 1.000
+regulatory announcement,1.000 1.000 1.000 1.000
+business terminology,1.000 1.000 1.000 1.000
+regulatory information,1.000 1.000 1.000 1.000
+disclaimers,1.000 1.000 1.000 1.000
+tax disclaimers,1.000 1.000 1.000 1.000
+clinical information,1.000 1.000 1.000 1.000
+outdated software information,1.000 1.000 1.000 1.000
+embedded media links,1.000 1.000 1.000 1.000
+instructional content,1.000 1.000 1.000 1.000
+self-identification,1.000 1.000 1.000 1.000
+self reference,1.000 1.000 1.000 1.000
+medical specialty,1.000 1.000 1.000 1.000
+medical jargon,1.000 1.000 1.000 1.000
+advocating non-standard therapies,1.000 1.000 1.000 1.000
+possible conflict of interest,1.000 1.000 1.000 1.000
+confidential information,1.000 1.000 1.000 1.000
+discriminatory statement,1.000 1.000 1.000 1.000
+personally identifiable information,1.000 1.000 1.000 1.000
+sexually explicit material,1.000 1.000 1.000 1.000
+invasive content,1.000 1.000 1.000 1.000
+academic reference,1.000 1.000 1.000 1.000
+professional references,1.000 1.000 1.000 1.000
+medical terminology,1.000 1.000 1.000 1.000
+outdated information,1.000 1.000 1.000 1.000
+technical details,1.000 1.000 1.000 1.000
+faq link,1.000 1.000 1.000 1.000
+platform restrictions,1.000 1.000 1.000 1.000
+specialized medical terminology,1.000 1.000 1.000 1.000
+medical protocol,1.000 1.000 1.000 1.000
+algorithmic instructions,1.000 1.000 1.000 1.000
+reference,1.000 1.000 1.000 1.000
+pmid,1.000 1.000 1.000 1.000
+annual award,1.000 1.000 1.000 1.000
+generational stereotypes,1.000 1.000 1.000 1.000
+ageism,1.000 1.000 1.000 1.000
+age related bias,1.000 1.000 1.000 1.000
+technological ignorance,1.000 1.000 1.000 1.000
+demographic information,1.000 1.000 1.000 1.000
+none found,1.000 1.000 1.000 1.000
+junk data,1.000 1.000 1.000 1.000
+career advice,1.000 1.000 1.000 1.000
+online research,1.000 1.000 1.000 1.000
+academic references,1.000 1.000 1.000 1.000
+reference to clinical policy,1.000 1.000 1.000 1.000
+reference to academic publication,1.000 1.000 1.000 1.000
+medical controversy,1.000 1.000 1.000 1.000
+personal content,1.000 1.000 1.000 1.000
+abbreviated term,1.000 1.000 1.000 1.000
+technical term,1.000 1.000 1.000 1.000
+unreliable comparison,1.000 1.000 1.000 1.000
+medical literature,1.000 1.000 1.000 1.000
+commercial reference,1.000 1.000 1.000 1.000
+unsolicited request,1.000 1.000 1.000 1.000
+independent task description,1.000 1.000 1.000 1.000
+unclear medical scenario,1.000 1.000 1.000 1.000
+unsolicited survey,1.000 1.000 1.000 1.000
+medical procedures,1.000 1.000 1.000 1.000
+unsafe task descriptions,1.000 1.000 1.000 1.000
+unprofessional behavior,1.000 1.000 1.000 1.000
+unreliable data,1.000 1.000 1.000 1.000
+unsafe content,1.000 1.000 1.000 1.000
+respect concerns,1.000 1.000 1.000 1.000
+loss of trust,1.000 1.000 1.000 1.000
+autonomy issues,1.000 1.000 1.000 1.000
+procedural information,1.000 1.000 1.000 1.000
+judgmental language,1.000 1.000 1.000 1.000
+adverse events,1.000 1.000 1.000 1.000
+medical errors,1.000 1.000 1.000 1.000
+celebrity,1.000 1.000 1.000 1.000
+celebrity references,1.000 1.000 1.000 1.000
+celebrity mentions,1.000 1.000 1.000 1.000
+celebrity endorsements,1.000 1.000 1.000 1.000
+storytelling,1.000 1.000 1.000 1.000
+experiential learning,1.000 1.000 1.000 1.000
+medical procedure,1.000 1.000 1.000 1.000
+technical information,1.000 1.000 1.000 1.000
+workaround,1.000 1.000 1.000 1.000
+pregnancy lactation information,1.000 1.000 1.000 1.000
+toxicology information,1.000 1.000 1.000 1.000
+promotional claims,1.000 1.000 1.000 1.000
+pricing information,1.000 1.000 1.000 1.000
+funeral arrangements,1.000 1.000 1.000 1.000
+news,1.000 1.000 1.000 1.000
+downloadable resources,1.000 1.000 1.000 1.000
+informational links,1.000 1.000 1.000 1.000
+educational jargon,1.000 1.000 1.000 1.000
+college-readiness metrics,1.000 1.000 1.000 1.000
+educational content,1.000 1.000 1.000 1.000
+timestamp,1.000 1.000 1.000 1.000
+vague language,1.000 1.000 1.000 1.000
+unclear language,1.000 1.000 1.000 1.000
+unsure,1.000 1.000 1.000 1.000
+uncertain information,1.000 1.000 1.000 1.000
+abusive language,1.000 1.000 1.000 1.000
+subjective opinion,1.000 1.000 1.000 1.000
+unverifiable claim,1.000 1.000 1.000 1.000
+personal attack,1.000 1.000 1.000 1.000
+uninformed opinion,1.000 1.000 1.000 1.000
+unclear information,1.000 1.000 1.000 1.000
+unverifiable claims,1.000 1.000 1.000 1.000
+unreliable source,1.000 1.000 1.000 1.000
+uninformed content,1.000 1.000 1.000 1.000
+unusual terminology,1.000 1.000 1.000 1.000
+unusual species,1.000 1.000 1.000 1.000
+unqualified opinions,1.000 1.000 1.000 1.000
+unverifiable information,1.000 1.000 1.000 1.000
+unusual references,1.000 1.000 1.000 1.000
+unusual entities,1.000 1.000 1.000 1.000
+unreliable sources,1.000 1.000 1.000 1.000
+unsubstantiated claims,1.000 1.000 1.000 1.000
+unanswered question,1.000 1.000 1.000 1.000
+ungrammatical text,1.000 1.000 1.000 1.000
+scientific terminology,1.000 1.000 1.000 1.000
+health information,1.000 1.000 1.000 1.000
+advice,1.000 1.000 1.000 1.000
+self-promotional language,1.000 1.000 1.000 1.000
+sales pitch,1.000 1.000 1.000 1.000
+quotation marks,1.000 1.000 1.000 1.000
+hidden information,1.000 1.000 1.000 1.000
+hidden content,1.000 1.000 1.000 1.000
+units,1.000 1.000 1.000 1.000
+chemical notation,1.000 1.000 1.000 1.000
+uninformative content,1.000 1.000 1.000 1.000
+redundant information,1.000 1.000 1.000 1.000
+misinformation,1.000 1.000 1.000 1.000
+snake care misinformation,1.000 1.000 1.000 1.000
+inaccurate advice,1.000 1.000 1.000 1.000
+unsubstantiated health claims,1.000 1.000 1.000 1.000
+false advertising,1.000 1.000 1.000 1.000
+misleading health claims,1.000 1.000 1.000 1.000
+species information,1.000 1.000 1.000 1.000
+unverified claims,1.000 1.000 1.000 1.000
+animal trade promotion,1.000 1.000 1.000 1.000
+objectionable content,1.000 1.000 1.000 1.000
+commercial language,1.000 1.000 1.000 1.000
+bacterial contamination mention,1.000 1.000 1.000 1.000
+health warning,1.000 1.000 1.000 1.000
+unwanted information,1.000 1.000 1.000 1.000
+biological information,1.000 1.000 1.000 1.000
+limited availability,1.000 1.000 1.000 1.000
+price information,1.000 1.000 1.000 1.000
+marketing language,1.000 1.000 1.000 1.000
+superlative claims,1.000 1.000 1.000 1.000
+unsubstantiated claim,1.000 1.000 1.000 1.000
+unverifiable credentials,1.000 1.000 1.000 1.000
+exaggerated claims,1.000 1.000 1.000 1.000
+self-promotional claims,1.000 1.000 1.000 1.000
+false claims,1.000 1.000 1.000 1.000
+snake oil salesperson,1.000 1.000 1.000 1.000
+misleading instructions,1.000 1.000 1.000 1.000
+misleading information,1.000 1.000 1.000 1.000
+unsubstantiated advice,1.000 1.000 1.000 1.000
+chemical product names,1.000 1.000 1.000 1.000
+promotional products,1.000 1.000 1.000 1.000
+anti-parasite treatment promotion,1.000 1.000 1.000 1.000
+anti-virus software promotion,1.000 1.000 1.000 1.000
+argumentative tone,1.000 1.000 1.000 1.000
+off-topic content,1.000 1.000 1.000 1.000
+name calling,1.000 1.000 1.000 1.000
+personal attacks,1.000 1.000 1.000 1.000
+ad hominem attacks,1.000 1.000 1.000 1.000
+pejorative language,1.000 1.000 1.000 1.000
+self promotional statement,1.000 1.000 1.000 1.000
+promotional tone,1.000 1.000 1.000 1.000
+promotional statement,1.000 1.000 1.000 1.000
+grammatical errors,1.000 1.000 1.000 1.000
+grammatical error,1.000 1.000 1.000 1.000
+past tense,1.000 1.000 1.000 1.000
+secondary infections,1.000 1.000 1.000 1.000
+spelling errors,1.000 1.000 1.000 1.000
+ungrammatical sentence,1.000 1.000 1.000 1.000
+emotional appeals,1.000 1.000 1.000 1.000
+advice against established practices,1.000 1.000 1.000 1.000
+fearmongering,1.000 1.000 1.000 1.000
+unrelated health advice,1.000 1.000 1.000 1.000
+non-scientific advice,1.000 1.000 1.000 1.000
+unprofessional tone,1.000 1.000 1.000 1.000
+taxonomic information,1.000 1.000 1.000 1.000
+ungrammatical language,1.000 1.000 1.000 1.000
+specific mention,1.000 1.000 1.000 1.000
+warning,1.000 1.000 1.000 1.000
+advisory,1.000 1.000 1.000 1.000
+limited information,1.000 1.000 1.000 1.000
+unhelpful content,1.000 1.000 1.000 1.000
+organization description,1.000 1.000 1.000 1.000
+programmatic content,1.000 1.000 1.000 1.000
+event announcement,1.000 1.000 1.000 1.000
+self promotional content,1.000 1.000 1.000 1.000
+user reviews,1.000 1.000 1.000 1.000
+registration links,1.000 1.000 1.000 1.000
+social media promotion,1.000 1.000 1.000 1.000
+search interface,1.000 1.000 1.000 1.000
+business advice,1.000 1.000 1.000 1.000
+real estate agent promotion,1.000 1.000 1.000 1.000
+referral link,1.000 1.000 1.000 1.000
+professional credentials,1.000 1.000 1.000 1.000
+self-promotional statement,1.000 1.000 1.000 1.000
+legal disclaimers,1.000 1.000 1.000 1.000
+questionnaire,1.000 1.000 1.000 1.000
+promotional question,1.000 1.000 1.000 1.000
+self-help content,1.000 1.000 1.000 1.000
+self-help question,1.000 1.000 1.000 1.000
+self-help information,1.000 1.000 1.000 1.000
+coaching services,1.000 1.000 1.000 1.000
+business services,1.000 1.000 1.000 1.000
+tags,1.000 1.000 1.000 1.000
+journalistic language,1.000 1.000 1.000 1.000
+political analysis,1.000 1.000 1.000 1.000
+historical references,1.000 1.000 1.000 1.000
+nationalistic sentiment,1.000 1.000 1.000 1.000
+violence promotion,1.000 1.000 1.000 1.000
+threats,1.000 1.000 1.000 1.000
+incitement to violence,1.000 1.000 1.000 1.000
+political rhetoric,1.000 1.000 1.000 1.000
+juxtaposition of hypothetical scenarios,1.000 1.000 1.000 1.000
+author bio,1.000 1.000 1.000 1.000
+retail advertising,1.000 1.000 1.000 1.000
+industry-specific terminology,1.000 1.000 1.000 1.000
+business information,1.000 1.000 1.000 1.000
+biographical trivia,1.000 1.000 1.000 1.000
+news release,1.000 1.000 1.000 1.000
+location,1.000 1.000 1.000 1.000
+date,1.000 1.000 1.000 1.000
+contract information,1.000 1.000 1.000 1.000
