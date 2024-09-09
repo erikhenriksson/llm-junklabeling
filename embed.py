@@ -1,10 +1,37 @@
+import os
+
+os.environ["HF_HOME"] = ".hf/hf_home"
+
+import sys
+
+
 import json
 from collections import Counter
+from dotenv import load_dotenv
 
-# Initialize a Counter to store keyphrases and their counts
+load_dotenv()
+
+testing = os.getenv("TEST")
+
+if not testing:
+    from FlagEmbedding import BGEM3FlagModel
+
+    model = BGEM3FlagModel("BAAI/bge-m3", use_fp16=True)
+
+
+def embed(text):
+    if not testing:
+        embedding = model.encode([text])["dense_vecs"]
+
+        embedding_str = " ".join([f"{x:.16f}" for x in embedding.flatten()])
+        return embedding_str
+    else:
+        return "1.000 1.000 1.000 1.000"
+
+
 keyphrases_counter = Counter()
+keyphrases_unique_counter = Counter()
 keyphrases_coll = {}
-# Path to the JSONL file
 file_path = "output/fineweb_annotated_4.jsonl"
 
 # Read the JSONL file and process each line
@@ -18,19 +45,32 @@ with open(file_path, "r") as file:
         # Process each keyphrase
         for k_i, keyphrase in enumerate(keyphrases):
             # Split the keyphrase by semicolon
-            split_keyphrases = keyphrase.strip().lower().replace(".", "")
+            cleaned_keyphrase = (
+                keyphrase.strip().lower().replace(".", "").replace("\n", "")
+            )
             # Update the Counter with each split keyphrase, trimming whitespace
-            keyphrases_counter.update(
-                phrase.strip().replace("\n", "")
-                for phrase in [split_keyphrases]
-                if phrase
+            keyphrases_counter.update(cleaned_keyphrase)
+
+            split_keyphrases = [x.strip() for x in cleaned_keyphrase.split(";")]
+
+            # Update the unique keyphrase Counter
+            keyphrases_unique_counter.update(set(split_keyphrases))
+
+            line_with_context = (
+                (lines[k_i - 2] if k_i >= 2 else "")
+                + (lines[k_i - 1] if k_i >= 1 else "")
+                + f"[--> {lines[k_i]} <--]"
+                + (lines[k_i + 1] if k_i <= len(keyphrases) - 2 else "")
+                + (lines[k_i + 2] if k_i <= len(keyphrases) - 3 else "")
             )
 
+            # line_with_context = lines[k_i]
+
             # Add to collecion
-            if split_keyphrases in keyphrases_coll:
-                keyphrases_coll[split_keyphrases].append(lines[k_i])
+            if cleaned_keyphrase in keyphrases_coll:
+                keyphrases_coll[cleaned_keyphrase].append(line_with_context)
             else:
-                keyphrases_coll[split_keyphrases] = [lines[k_i]]
+                keyphrases_coll[cleaned_keyphrase] = [line_with_context]
 
 # Convert the Counter to a sorted list of (keyphrase, count) tuples
 sorted_keyphrases = sorted(
@@ -44,9 +84,25 @@ filtered_keyphrases = [
 
 # Print or save the sorted and filtered keyphrases with their counts
 for keyphrase, count in filtered_keyphrases:
+    print("############################################")
     print(f"[{keyphrase}]: {count}")
     print("Examples:")
     # print examples of this keyphras
-    for ex in keyphrases_coll[keyphrase][:5]:
-        print("------")
-        print(ex)
+    # for ex in keyphrases_coll[keyphrase][:5]:
+    #    print("------")
+    #    print(ex)
+
+
+# Print the unique keyphrases and their counts
+print("############################################")
+print("Unique Keyphrases:")
+for keyphrase, count in keyphrases_unique_counter.items():
+    print(f"[{keyphrase}]: {count}")
+
+    embedding = embed(keyphrase)
+
+    print(embedding)
+
+    # Save embedding to csv file
+    with open("output/embeddings.csv", "a") as f:
+        f.write(f"{keyphrase},{embedding}\n")
