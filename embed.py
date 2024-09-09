@@ -76,7 +76,7 @@ with open(file_path, "r") as file:
             ]
 
             # Update the unique keyphrase Counter
-            keyphrases_unique_counter.update(set(split_keyphrases))
+            keyphrases_unique_counter.update(set(filtered_keyphrases))
 
             line_with_context = (
                 (lines[k_i - 2] if k_i >= 2 else "")
@@ -119,7 +119,7 @@ for keyphrase, count in filtered_keyphrases:
 print("############################################")
 print("Unique Keyphrases:")
 for keyphrase, count in keyphrases_unique_counter.items():
-    # print(f"[{keyphrase}]: {count}")
+    print(f"[{keyphrase}]: {count}")
 
     embedding = embed(keyphrase)
 
