@@ -10,7 +10,7 @@ from datasets import load_dataset
 from dotenv import load_dotenv
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from prompts_backup2 import SYSTEM
+from prompts import SYSTEM
 
 load_dotenv()
 
