@@ -11,6 +11,23 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+remove_words = [
+    "information",
+    "content",
+    "language",
+    "rhetoric",
+    "statement",
+    "reference",
+    "mention",
+    "description",
+    "text",
+    "notice",
+    "story",
+    "commentary",
+    "discussion",
+]
+
+
 testing = os.getenv("TEST")
 
 if not testing:
@@ -53,6 +70,11 @@ with open(file_path, "r") as file:
 
             split_keyphrases = [x.strip() for x in cleaned_keyphrase.split(";")]
 
+            filtered_keyphrases = [
+                " ".join(word for word in phrase.split() if word not in remove_words)
+                for phrase in split_keyphrases
+            ]
+
             # Update the unique keyphrase Counter
             keyphrases_unique_counter.update(set(split_keyphrases))
 
@@ -84,9 +106,9 @@ filtered_keyphrases = [
 
 # Print or save the sorted and filtered keyphrases with their counts
 for keyphrase, count in filtered_keyphrases:
-    print("############################################")
+    # print("############################################")
     print(f"[{keyphrase}]: {count}")
-    print("Examples:")
+    # print("Examples:")
     # print examples of this keyphras
     # for ex in keyphrases_coll[keyphrase][:5]:
     #    print("------")
