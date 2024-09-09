@@ -97,12 +97,10 @@ for keyphrase, count in filtered_keyphrases:
 print("############################################")
 print("Unique Keyphrases:")
 for keyphrase, count in keyphrases_unique_counter.items():
-    print(f"[{keyphrase}]: {count}")
+    # print(f"[{keyphrase}]: {count}")
 
     embedding = embed(keyphrase)
 
-    print(embedding)
-
     # Save embedding to csv file
-    with open("output/embeddings.csv", "a") as f:
-        f.write(f"{keyphrase},{embedding}\n")
+    with open("output/embeddings.tsv", "a") as f:
+        f.write(f"{keyphrase}\t{count}\t{embedding}\n")
