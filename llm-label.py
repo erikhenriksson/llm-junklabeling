@@ -81,21 +81,20 @@ def generate_window(document, target_idx, window_size=1):
 
     # Add the lines before the target line
     for i in range(start, target_idx):
-        window.append(f"Context: {i - start + 1}: {document[i]}")
+        window.append(f"Context: {document[i]}")
 
     # Add the target line, marked with [TARGET_START] and [TARGET_END]
     window.append(f"[TARGET_START] {document[target_idx]} [TARGET_END]")
 
     # Add the lines after the target line
     for i in range(target_idx + 1, end):
-        window.append(f"Context: {i - target_idx}: {document[i]}")
-
+        window.append(f"Context: {document[i]}")
 
     # Join the window list into a single string with each line on a new line
     return "\n".join(window)
 
 
-def generate_all_windows(document, window_size=2):
+def generate_all_windows(document, window_size=1):
 
     all_windows = []
 
@@ -104,6 +103,13 @@ def generate_all_windows(document, window_size=2):
         # Generate the window for the current target line
         window = generate_window(document, target_idx, window_size)
         all_windows.append(window)
+
+    if testing:
+        for all_window in all_windows:
+            print(all_window)
+            print("\n\n\n")
+
+        exit()
 
     return all_windows
 
@@ -128,7 +134,7 @@ batch_size = 4
 for row in data_sample:
     if row.get("id") in annotated_ids:
         continue
-    windows = generate_all_windows(row["text"].split("\n"), 2)
+    windows = generate_all_windows(row["text"].split("\n"), 1)
     text_annotations = []
     batch = []
     # Add each generated window to the batch
