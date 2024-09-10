@@ -68,7 +68,7 @@ def generate_responses(windows):
     return batch_outputs
 
 
-def generate_window(document, target_idx, window_size=2):
+def generate_window(document, target_idx, window_size=1):
 
     num_lines = len(document)
 
@@ -79,24 +79,17 @@ def generate_window(document, target_idx, window_size=2):
     # Initialize the window with context lines before the target
     window = []
 
-    # Add [DOC_START] if the target line is the first line in the document
-    if target_idx == 0:
-        window.append("[DOC_START]")
-
     # Add the lines before the target line
     for i in range(start, target_idx):
-        window.append(f"Context Line {i - start + 1}: {document[i]}")
+        window.append(f"Context: {i - start + 1}: {document[i]}")
 
     # Add the target line, marked with [TARGET_START] and [TARGET_END]
     window.append(f"[TARGET_START] {document[target_idx]} [TARGET_END]")
 
     # Add the lines after the target line
     for i in range(target_idx + 1, end):
-        window.append(f"Context Line {i - target_idx}: {document[i]}")
+        window.append(f"Context: {i - target_idx}: {document[i]}")
 
-    # Add [DOC_END] if the target line is the last line in the document
-    if target_idx == num_lines - 1:
-        window.append("[DOC_END]")
 
     # Join the window list into a single string with each line on a new line
     return "\n".join(window)
@@ -117,7 +110,7 @@ def generate_all_windows(document, window_size=2):
 
 # Load the dataset by streaming
 dataset_url = "HuggingFaceFW/fineweb"
-output_file = "output/fineweb_annotated_4.jsonl"
+output_file = "output/fineweb_annotated_5.jsonl"
 dataset = load_dataset(dataset_url, split="train", streaming=True)
 data_sample = list(islice(dataset, 1000))
 
