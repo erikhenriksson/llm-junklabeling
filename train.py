@@ -1,6 +1,7 @@
 import os
 import get_data_for_training_encoder
 import numpy as np
+from sklearn.metrics import f1_score
 
 os.environ["HF_HOME"] = ".hf/hf_home"
 
@@ -61,6 +62,26 @@ def tokenize_function(examples):
 tokenized_dataset = dataset_dict.map(tokenize_function, batched=True)
 
 
+# Define the custom evaluation metrics function
+def compute_metrics(pred):
+    # Get the predictions and true labels
+    labels = pred.label_ids
+    preds = pred.predictions.argmax(-1)  # Assuming argmax for classification
+
+    # Flatten the labels and predictions (in case they are not)
+    labels_flat = labels.flatten()
+    preds_flat = preds.flatten()
+
+    # Calculate the F1 scores
+    micro_f1 = f1_score(labels_flat, preds_flat, average="micro")
+    macro_f1 = f1_score(labels_flat, preds_flat, average="macro")
+
+    return {
+        "micro_f1": micro_f1,
+        "macro_f1": macro_f1,
+    }
+
+
 # Define training arguments
 training_args = TrainingArguments(
     output_dir="./results",  # Directory where model checkpoints and outputs will be saved
@@ -82,6 +103,7 @@ trainer = Trainer(
     args=training_args,
     train_dataset=tokenized_dataset["train"],
     eval_dataset=tokenized_dataset["dev"],
+    compute_metrics=compute_metrics,  # Add custom evaluation metrics function
 )
 
 # Train the model
