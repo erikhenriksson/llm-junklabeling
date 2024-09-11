@@ -28,7 +28,7 @@ if not testing:
     )
 
     model = XLMRobertaForSequenceClassification.from_pretrained(
-        model_name, num_labels=7, problem_type="multi_label_classification"
+        model_name, num_labels=5, problem_type="multi_label_classification"
     )
     model.resize_token_embeddings(len(tokenizer))
 
