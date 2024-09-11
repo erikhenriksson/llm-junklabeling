@@ -63,13 +63,17 @@ tokenized_dataset = dataset_dict.map(tokenize_function, batched=True)
 
 # Define training arguments
 training_args = TrainingArguments(
-    output_dir="./results",
-    evaluation_strategy="epoch",
+    output_dir="./results",  # Directory where model checkpoints and outputs will be saved
+    evaluation_strategy="steps",  # Change evaluation strategy to evaluate every N steps
+    eval_steps=500,  # Evaluate every 500 steps
     learning_rate=2e-5,
     per_device_train_batch_size=8,
     per_device_eval_batch_size=8,
     num_train_epochs=3,
     weight_decay=0.01,
+    save_total_limit=2,  # Limit the number of saved checkpoints (optional)
+    save_steps=500,  # Save the model every 500 steps
+    logging_dir="./logs",  # Directory to store logs (optional)
 )
 
 # Initialize Trainer
@@ -77,13 +81,15 @@ trainer = Trainer(
     model=model,
     args=training_args,
     train_dataset=tokenized_dataset["train"],
-    eval_dataset=tokenized_dataset[
-        "dev"
-    ],  # You can use separate train/eval datasets in practice
+    eval_dataset=tokenized_dataset["dev"],
 )
 
 # Train the model
 trainer.train()
+
+# Save the fine-tuned model and tokenizer
+trainer.save_model("./fine_tuned_model")  # Save the model
+tokenizer.save_pretrained("./fine_tuned_model")  # Save the tokenizer
 
 # Evaluate the model
 results = trainer.evaluate()
