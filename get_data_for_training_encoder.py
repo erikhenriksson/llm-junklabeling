@@ -1,11 +1,23 @@
 import json
 from skmultilearn.model_selection import IterativeStratification
 import numpy as np
+from collections import Counter
 
 
 def clean_annotation(annotation):
     # Strip leading/trailing whitespace and remove extra spaces around semicolons
     return ";".join(part.strip() for part in annotation.split(";")).strip()
+
+
+def map_annotation(annotation):
+    labels = annotation.lower().split(";")
+    # Map labels to other labels
+    label_map = {
+        "seo spam": "commercial noise",
+        "machine-generated": "commercial noise",
+        "placeholder": "technical/boilerplate",
+    }
+    return ";".join(label_map.get(label, label) for label in labels)
 
 
 def read_jsonl_to_list(file_path):
@@ -20,7 +32,7 @@ def read_jsonl_to_list(file_path):
             text_lines = data.get("text", "").split("\n")
             # Clean each annotation item
             llm_junk_annotations = [
-                clean_annotation(annotation)
+                map_annotation(clean_annotation(annotation))
                 for annotation in data.get("llm_junk_annotations", [])
             ]
             # Append a tuple to the result list
@@ -107,6 +119,28 @@ def create_context_window_for_documents(documents, window_size):
 
     return context_windows, labels
 
+
+def unique_lists_with_named_counts(list_of_lists, unique_sorted_labels):
+    # Convert each list to a tuple so it can be hashed
+    list_of_tuples = [tuple(lst) for lst in list_of_lists]
+
+    # Use Counter to count the occurrences of each unique tuple
+    counts = Counter(list_of_tuples)
+
+    # Convert the tuples back to lists for the output
+    named_counts = {}
+
+    for tup, count in counts.items():
+        # Extract the class names from the one-hot vector
+        active_classes = [
+            unique_sorted_labels[i] for i, val in enumerate(tup) if val == 1
+        ]
+        # Add the count to the dictionary
+        named_counts[tuple(active_classes)] = count
+
+    return named_counts
+
+
 def get_dataset(file_path):
 
     # Example usage
@@ -121,7 +155,9 @@ def get_dataset(file_path):
     print(unique_sorted_labels)
 
     # Step 3: Create the one-hot encoded data
-    parsed_data_with_one_hot = add_one_hot_to_parsed_data(parsed_data, unique_sorted_labels)
+    parsed_data_with_one_hot = add_one_hot_to_parsed_data(
+        parsed_data, unique_sorted_labels
+    )
 
     # print(parsed_data_with_one_hot[0])
 
@@ -133,6 +169,11 @@ def get_dataset(file_path):
         texts
     )  # Features (assuming text representation, which may need further preprocessing)
     Y = np.array(labels)  # Multilabel targets
+
+    named_counts = unique_lists_with_named_counts(Y, unique_sorted_labels)
+    print("Named Counts:")
+    for classes, count in named_counts.items():
+        print(f"Classes: {classes}, Count: {count}")
 
     # Initialize IterativeStratification for the first split
     # We want 70% train and 30% temporary (which will be further split into 20% test and 10% dev)
@@ -163,5 +204,4 @@ def get_dataset(file_path):
     print(f"Test set size: {len(X_test)}")
     print(f"Dev set size: {len(X_dev)}")
 
-
-    return X_train, Y_train, X_test, Y_test, X_dev, Y_dev   
+    return X_train, Y_train, X_test, Y_test, X_dev, Y_dev
