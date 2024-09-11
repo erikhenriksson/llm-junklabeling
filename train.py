@@ -1,7 +1,7 @@
 import os
 import get_data_for_training_encoder
 import numpy as np
-from sklearn.metrics import f1_score
+from sklearn.metrics import classification_report, f1_score
 
 os.environ["HF_HOME"] = ".hf/hf_home"
 
@@ -64,20 +64,28 @@ tokenized_dataset = dataset_dict.map(tokenize_function, batched=True)
 
 # Define the custom evaluation metrics function
 def compute_metrics(pred):
-    # Get the true labels and the predicted probabilities
+    # Get the true labels and the predicted logits or probabilities
     labels = pred.label_ids
     preds = pred.predictions
 
-    # If the model outputs logits, apply a sigmoid to get probabilities
-    preds = (preds > 0.5).astype(int)  # Threshold predictions to get binary outcomes
+    # Convert logits or probabilities to binary predictions using a threshold of 0.5
+    preds = (preds > 0.5).astype(int)
 
-    # Calculate the micro and macro F1 scores
+    # Calculate micro and macro F1 scores
     micro_f1 = f1_score(labels, preds, average="micro")
     macro_f1 = f1_score(labels, preds, average="macro")
+
+    # Generate classification report to inspect per-class metrics
+    class_report = classification_report(labels, preds, output_dict=True)
+
+    # You can log or print the classification report
+    print("Classification Report:")
+    print(classification_report(labels, preds))
 
     return {
         "micro_f1": micro_f1,
         "macro_f1": macro_f1,
+        "class_report": class_report,  # Include the detailed per-class report
     }
 
 
