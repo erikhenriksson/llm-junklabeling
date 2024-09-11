@@ -64,17 +64,16 @@ tokenized_dataset = dataset_dict.map(tokenize_function, batched=True)
 
 # Define the custom evaluation metrics function
 def compute_metrics(pred):
-    # Get the predictions and true labels
+    # Get the true labels and the predicted probabilities
     labels = pred.label_ids
-    preds = pred.predictions.argmax(-1)  # Assuming argmax for classification
+    preds = pred.predictions
 
-    # Flatten the labels and predictions (in case they are not)
-    labels_flat = labels.flatten()
-    preds_flat = preds.flatten()
+    # If the model outputs logits, apply a sigmoid to get probabilities
+    preds = (preds > 0.5).astype(int)  # Threshold predictions to get binary outcomes
 
-    # Calculate the F1 scores
-    micro_f1 = f1_score(labels_flat, preds_flat, average="micro")
-    macro_f1 = f1_score(labels_flat, preds_flat, average="macro")
+    # Calculate the micro and macro F1 scores
+    micro_f1 = f1_score(labels, preds, average="micro")
+    macro_f1 = f1_score(labels, preds, average="macro")
 
     return {
         "micro_f1": micro_f1,
@@ -86,7 +85,7 @@ def compute_metrics(pred):
 training_args = TrainingArguments(
     output_dir="./results",  # Directory where model checkpoints and outputs will be saved
     evaluation_strategy="steps",  # Change evaluation strategy to evaluate every N steps
-    eval_steps=500,  # Evaluate every 500 steps
+    eval_steps=1,  # Evaluate every 500 steps
     learning_rate=2e-5,
     per_device_train_batch_size=8,
     per_device_eval_batch_size=8,
