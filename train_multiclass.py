@@ -40,11 +40,11 @@ X_train, y_train, X_test, y_test, X_dev, y_dev = (
 )
 
 X_train = np.array(X_train)
-y_train = np.array(y_train).astype(float)
+y_train = np.array(y_train)
 X_test = np.array(X_test)
-y_test = np.array(y_test).astype(float)
+y_test = np.array(y_test)
 X_dev = np.array(X_dev)
-y_dev = np.array(y_dev).astype(float)
+y_dev = np.array(y_dev)
 
 train_dataset = Dataset.from_dict({"text": X_train, "labels": y_train})
 dev_dataset = Dataset.from_dict({"text": X_dev, "labels": y_dev})
