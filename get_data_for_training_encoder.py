@@ -2,6 +2,7 @@ import json
 from skmultilearn.model_selection import IterativeStratification
 import numpy as np
 from collections import Counter
+from sklearn.model_selection import train_test_split
 
 
 def clean_annotation(annotation):
@@ -9,7 +10,7 @@ def clean_annotation(annotation):
     return ";".join(part.strip() for part in annotation.split(";")).strip()
 
 
-def map_annotation(annotation):
+def map_annotation(annotation, multilabel):
     labels = annotation.lower().split(";")
     # Map labels to other labels
     label_map = {
@@ -17,10 +18,25 @@ def map_annotation(annotation):
         "machine-generated": "commercial noise",
         "placeholder": "technical/boilerplate",
     }
-    return ";".join(label_map.get(label, label) for label in labels)
+    labels_list = list(set([label_map.get(label, label) for label in labels]))
+
+    if not multilabel:
+        labels_list_temp = labels_list[:]
+        if len(labels_list) > 1:
+            if "clean" in labels_list:
+                labels_list = [x for x in labels_list if x != "clean"]
+            else:
+                labels_list = [x for x in labels_list if x == "navigational"]
+        if len(labels_list) > 1 or not labels_list:
+            print("this should just have one label:", labels_list, labels_list_temp)
+            exit()
+        return labels_list[0]
+
+    labels = ";".join(labels_list)
+    return labels
 
 
-def read_jsonl_to_list(file_path):
+def read_jsonl_to_list(file_path, multilabel):
     result_list = []
     # Open the JSONL file
     with open(file_path, "r") as f:
@@ -32,7 +48,7 @@ def read_jsonl_to_list(file_path):
             text_lines = data.get("text", "").split("\n")
             # Clean each annotation item
             llm_junk_annotations = [
-                map_annotation(clean_annotation(annotation))
+                map_annotation(clean_annotation(annotation), multilabel)
                 for annotation in data.get("llm_junk_annotations", [])
             ]
             # Append a tuple to the result list
@@ -80,12 +96,16 @@ def create_one_hot_vectors(annotations, unique_labels):
     return one_hot_vectors
 
 
-def add_one_hot_to_parsed_data(parsed_data, unique_labels):
+def add_one_hot_to_parsed_data(parsed_data, unique_labels, multilabel):
     updated_data = []
 
     for text_lines, annotations in parsed_data:
         # Generate one-hot vectors for the list of annotations
-        one_hot_vectors = create_one_hot_vectors(annotations, unique_labels)
+        if multilabel:
+            one_hot_vectors = create_one_hot_vectors(annotations, unique_labels)
+        else:
+
+            one_hot_vectors = [unique_labels.index(x) for x in annotations]
 
         # Append the tuple with text_lines, annotations, and one-hot vectors
         updated_data.append((text_lines, annotations, one_hot_vectors))
@@ -141,13 +161,13 @@ def unique_lists_with_named_counts(list_of_lists, unique_sorted_labels):
     return named_counts
 
 
-def get_dataset(file_path):
+def get_dataset(file_path, multilabel=True):
 
     # Example usage
     file_path = "output/fineweb_annotated_gpt4.jsonl"
 
     # Step 1: Parse the JSONL file into a list of tuples
-    parsed_data = read_jsonl_to_list(file_path)
+    parsed_data = read_jsonl_to_list(file_path, multilabel)
 
     # Step 2: Generate the unique sorted labels
     unique_sorted_labels = get_unique_sorted_labels(parsed_data)
@@ -156,10 +176,10 @@ def get_dataset(file_path):
 
     # Step 3: Create the one-hot encoded data
     parsed_data_with_one_hot = add_one_hot_to_parsed_data(
-        parsed_data, unique_sorted_labels
+        parsed_data, unique_sorted_labels, multilabel
     )
 
-    # print(parsed_data_with_one_hot[0])
+    print(parsed_data_with_one_hot[0])
 
     # Step 4: Create context windows and labels for the documents
     texts, labels = create_context_window_for_documents(parsed_data_with_one_hot, 1)
@@ -170,38 +190,59 @@ def get_dataset(file_path):
     )  # Features (assuming text representation, which may need further preprocessing)
     Y = np.array(labels)  # Multilabel targets
 
-    named_counts = unique_lists_with_named_counts(Y, unique_sorted_labels)
-    print("Named Counts:")
-    for classes, count in named_counts.items():
-        print(f"Classes: {classes}, Count: {count}")
+    if not multilabel:
+        # First, split the data into train (70%) and a temporary set (30%)
+        X_train, X_temp, Y_train, Y_temp = train_test_split(
+            X, Y, test_size=0.3, stratify=Y, random_state=42
+        )
 
-    # Initialize IterativeStratification for the first split
-    # We want 70% train and 30% temporary (which will be further split into 20% test and 10% dev)
-    splitter = IterativeStratification(
-        n_splits=2, order=1, sample_distribution_per_fold=[0.3, 0.7]
-    )
+        # Next, split the temporary set into dev (10%) and test (20%)
+        X_dev, X_test, Y_dev, Y_test = train_test_split(
+            X_temp, Y_temp, test_size=2 / 3, stratify=Y_temp, random_state=42
+        )
 
-    print(X.shape, Y.shape)
+        # Now you have your stratified splits:
+        # X_train, Y_train (70% of the data)
+        # X_dev, Y_dev (10% of the data)
+        # X_test, Y_test (20% of the data)
 
-    # First split: Train (70%) and Temporary (30%)
-    train_idx, temp_idx = next(splitter.split(X, Y))
+        # Print the sizes to verify
+        print(f"Train set size: {len(X_train)}")
+        print(f"Dev set size: {len(X_dev)}")
+        print(f"Test set size: {len(X_test)}")
 
-    X_train, Y_train = X[train_idx], Y[train_idx]
-    X_temp, Y_temp = X[temp_idx], Y[temp_idx]
+    else:
+        named_counts = unique_lists_with_named_counts(Y, unique_sorted_labels)
+        print("Named Counts:")
+        for classes, count in named_counts.items():
+            print(f"Classes: {classes}, Count: {count}")
+        # Initialize IterativeStratification for the first split
+        # We want 70% train and 30% temporary (which will be further split into 20% test and 10% dev)
+        splitter = IterativeStratification(
+            n_splits=2, order=1, sample_distribution_per_fold=[0.3, 0.7]
+        )
 
-    # Initialize IterativeStratification for the second split
-    # We want 20% test and 10% dev from the temporary set
-    splitter_temp = IterativeStratification(
-        n_splits=2, order=1, sample_distribution_per_fold=[0.3333, 0.6667]
-    )
-    test_idx, dev_idx = next(splitter_temp.split(X_temp, Y_temp))
+        print(X.shape, Y.shape)
 
-    X_test, Y_test = X_temp[test_idx], Y_temp[test_idx]
-    X_dev, Y_dev = X_temp[dev_idx], Y_temp[dev_idx]
+        # First split: Train (70%) and Temporary (30%)
+        train_idx, temp_idx = next(splitter.split(X, Y))
 
-    # Print shapes to confirm
-    print(f"Training set size: {len(X_train)}")
-    print(f"Test set size: {len(X_test)}")
-    print(f"Dev set size: {len(X_dev)}")
+        X_train, Y_train = X[train_idx], Y[train_idx]
+        X_temp, Y_temp = X[temp_idx], Y[temp_idx]
+
+        # Initialize IterativeStratification for the second split
+        # We want 20% test and 10% dev from the temporary set
+        splitter_temp = IterativeStratification(
+            n_splits=2, order=1, sample_distribution_per_fold=[0.3333, 0.6667]
+        )
+        test_idx, dev_idx = next(splitter_temp.split(X_temp, Y_temp))
+
+        X_test, Y_test = X_temp[test_idx], Y_temp[test_idx]
+        X_dev, Y_dev = X_temp[dev_idx], Y_temp[dev_idx]
+
+        # Print shapes to confirm
+        print(f"Training set size: {len(X_train)}")
+        print(f"Test set size: {len(X_test)}")
+        print(f"Dev set size: {len(X_dev)}")
 
     return X_train, Y_train, X_test, Y_test, X_dev, Y_dev
