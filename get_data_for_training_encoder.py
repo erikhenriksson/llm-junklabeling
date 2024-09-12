@@ -5,7 +5,7 @@ from collections import Counter
 from sklearn.model_selection import train_test_split
 import random
 
-random.setstate(42)
+random.seed(42)
 
 
 def clean_annotation(annotation):
@@ -203,7 +203,7 @@ def get_dataset(file_path, multilabel=True):
 
     print(unique_sorted_labels)
 
-    # Step 3: Create the one-hot encoded data
+    # Step 3: Encode the labels
     parsed_data_with_one_hot = add_one_hot_to_parsed_data(
         parsed_data, unique_sorted_labels, multilabel
     )
