@@ -3,6 +3,9 @@ from skmultilearn.model_selection import IterativeStratification
 import numpy as np
 from collections import Counter
 from sklearn.model_selection import train_test_split
+import random
+
+random.setstate(42)
 
 
 def clean_annotation(annotation):
@@ -161,6 +164,32 @@ def unique_lists_with_named_counts(list_of_lists, unique_sorted_labels):
     return named_counts
 
 
+def downsample_zero_indices(X, Y, percentage):
+    # Find indices where Y equals 0
+    zero_indices = [i for i, y in enumerate(Y) if y == 0]
+
+    # Calculate the number of zero indices to keep
+    num_to_keep = int(len(zero_indices) * percentage)
+
+    # Randomly sample the indices to keep
+    indices_to_keep = random.sample(zero_indices, num_to_keep)
+
+    # Keep all the non-zero indices
+    non_zero_indices = [i for i, y in enumerate(Y) if y != 0]
+
+    # Combine the non-zero indices and the downsampled zero indices
+    final_indices = non_zero_indices + indices_to_keep
+
+    # Sort the final indices to maintain the original order
+    final_indices.sort()
+
+    # Downsample X and Y using the selected indices
+    X_downsampled = [X[i] for i in final_indices]
+    Y_downsampled = [Y[i] for i in final_indices]
+
+    return X_downsampled, Y_downsampled
+
+
 def get_dataset(file_path, multilabel=True):
 
     # Example usage
@@ -191,6 +220,8 @@ def get_dataset(file_path, multilabel=True):
     Y = np.array(labels)  # Multilabel targets
 
     if not multilabel:
+        X, Y = downsample_zero_indices(X, Y, 0.1)
+
         # First, split the data into train (70%) and a temporary set (30%)
         X_train, X_temp, Y_train, Y_temp = train_test_split(
             X, Y, test_size=0.3, stratify=Y, random_state=42
