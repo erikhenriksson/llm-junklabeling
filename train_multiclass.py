@@ -67,23 +67,24 @@ tokenized_dataset = dataset_dict.map(tokenize_function, batched=True)
 # Define compute_metrics function
 def compute_metrics(p):
     predictions, labels = p
-    predictions = np.argmax(predictions, axis=1)
+    preds = np.argmax(predictions, axis=1)
 
-    # Calculate F1 score
-    f1 = f1_score(labels, predictions, average="weighted")
+    # Calculate micro and macro F1 scores
+    micro_f1 = f1_score(labels, preds, average="micro")
+    macro_f1 = f1_score(labels, preds, average="macro")
 
-    # Generate classification report
-    report = classification_report(labels, predictions, output_dict=True)
+    # Generate classification report to inspect per-class metrics
+    class_report = classification_report(labels, preds, output_dict=True)
 
-    # Convert report to a dictionary of metrics
-    report_dict = {
-        "f1": f1,
-        "precision": report["weighted avg"]["precision"],
-        "recall": report["weighted avg"]["recall"],
-        "accuracy": report["accuracy"],
+    # You can log or print the classification report
+    print("Classification Report:")
+    print(classification_report(labels, preds))
+
+    return {
+        "micro_f1": micro_f1,
+        "macro_f1": macro_f1,
+        "class_report": class_report,  # Include the detailed per-class report
     }
-
-    return report_dict
 
 
 # Define training arguments
