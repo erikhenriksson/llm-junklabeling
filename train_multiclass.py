@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 testing = os.getenv("TEST_CLASSIFIER") == "1"
-model_name = "xlm-roberta-large"
+model_name = "xlm-roberta-base"
 tokenizer = XLMRobertaTokenizer.from_pretrained(model_name)
 
 if not testing:
