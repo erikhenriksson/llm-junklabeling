@@ -29,7 +29,7 @@ def map_annotation(annotation, multilabel):
             labels_list = [x for x in labels_list if x != "clean"]
 
         if len(labels_list) > 1:
-            labels_list = labels_list[0]
+            labels_list = [labels_list[0]]
         if not labels_list:
 
             print("no label", labels_list, labels_list_temp)
