@@ -15,7 +15,6 @@ SYSTEM = """You are a specialized classification model designed to analyze indiv
 5. Output ONLY the label(s), with no additional text or explanation.
 
 ## Taxonomy of Categories
-
 - **Clean**: Any content that represents natural language use, including informal internet language, questions, partial sentences, common online expressions, and normal advertising or commercial language. This includes properly formatted titles, headings, and content structured for readability (even with stylistic elements like vertical bars, slashes, etc.).
 - **Navigational**: Content specifically designed for navigating or structuring a webpage or application, such as menus, buttons, links (e.g., "Home", "About Us"), or instructions for interacting with a login, form, or system interface (e.g., "Log In", "Submit", "Enter your ECode").
 - **Commercial Noise**: Extremely repetitive product listings, promotional content, strings of commercial keywords without sentence structure, or machine-generated ad content that doesn't reflect human communication patterns.
