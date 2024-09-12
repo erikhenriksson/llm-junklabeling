@@ -26,12 +26,10 @@ def map_annotation(annotation, multilabel):
     if not multilabel:
         labels_list_temp = labels_list[:]
         if len(labels_list) > 1:
-            if "clean" in labels_list:
-                labels_list = [x for x in labels_list if x != "clean"]
-            else:
-                labels_list = [x for x in labels_list if x == "navigational"]
+            labels_list = [x for x in labels_list if x != "clean"]
+
         if len(labels_list) > 1:
-            labels_list = [x for x in labels_list if x == "commercial noise"]
+            labels_list = labels_list[0]
         if len(labels_list) > 1 or not labels_list:
 
             print("this should just have one label:", labels_list, labels_list_temp)
