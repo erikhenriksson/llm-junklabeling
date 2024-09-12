@@ -30,9 +30,9 @@ def map_annotation(annotation, multilabel):
 
         if len(labels_list) > 1:
             labels_list = labels_list[0]
-        if len(labels_list) > 1 or not labels_list:
+        if not labels_list:
 
-            print("this should just have one label:", labels_list, labels_list_temp)
+            print("no label", labels_list, labels_list_temp)
             exit()
         return labels_list[0]
 
