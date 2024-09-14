@@ -109,29 +109,40 @@ def create_context_window(document, window_size):
     return context_windows
 
 
-def downsample_zero_indices(X, Y, percentage):
-    clean_i = 0
-    # Find indices where Y equals 0
-    zero_indices = [i for i, y in enumerate(Y) if y == clean_i]
+def downsample_class(X, Y, M, downsample_ratio=0.1, random_seed=42):
 
-    # Calculate the number of zero indices to keep
-    num_to_keep = int(len(zero_indices) * percentage)
+    np.random.seed(random_seed)  # For reproducibility
 
-    # Randomly sample the indices to keep
-    indices_to_keep = random.sample(zero_indices, num_to_keep)
+    # Get unique classes
+    unique_classes = np.unique(Y)
 
-    # Keep all the non-zero indices
-    non_zero_indices = [i for i, y in enumerate(Y) if y != clean_i]
+    # List to store indices for all classes
+    selected_indices = []
 
-    # Combine the non-zero indices and the downsampled zero indices
-    final_indices = non_zero_indices + indices_to_keep
+    for class_label in unique_classes:
+        class_indices = np.where(Y == class_label)[0]
 
-    # Sort the final indices to maintain the original order
-    final_indices.sort()
+        if class_label == M:
+            # Calculate the desired number of class M samples based on the downsample ratio
+            total_samples = len(Y)
+            desired_class_M_count = int(downsample_ratio * total_samples)
 
-    # Downsample X and Y using the selected indices
-    X_downsampled = [X[i] for i in final_indices]
-    Y_downsampled = [Y[i] for i in final_indices]
+            # Randomly sample from class M
+            downsampled_class_M_indices = np.random.choice(
+                class_indices, size=desired_class_M_count, replace=False
+            )
+            selected_indices.extend(downsampled_class_M_indices)
+        else:
+            # Keep all samples for other classes
+            selected_indices.extend(class_indices)
+
+    # Shuffle the combined indices
+    selected_indices = np.array(selected_indices)
+    np.random.shuffle(selected_indices)
+
+    # Downsample the feature matrix and labels
+    X_downsampled = X[selected_indices]
+    Y_downsampled = Y[selected_indices]
 
     return X_downsampled, Y_downsampled
 
@@ -164,7 +175,7 @@ def get_dataset(file_path):
     )  # Features (assuming text representation, which may need further preprocessing)
     Y = np.array(labels)  # Multilabel targets
 
-    X, Y = downsample_zero_indices(X, Y, 0.1)
+    X, Y = downsample_class(X, Y, 0, 0.1)
 
     # First, split the data into train (70%) and a temporary set (30%)
     X_train, X_temp, Y_train, Y_temp = train_test_split(
