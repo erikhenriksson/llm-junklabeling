@@ -59,7 +59,7 @@ if create_dataset:
 
 else:
     # Load the dataset from the saved directory
-    ataset_dict = load_from_disk("path_to_save")
+    ataset_dict = load_from_disk("dataset")
 
 from collections import Counter
 
