@@ -30,7 +30,7 @@ if not testing:
     )
 
     model = XLMRobertaForSequenceClassification.from_pretrained(
-        model_name, num_labels=6
+        model_name, num_labels=2
     )
     model.resize_token_embeddings(len(tokenizer))
 if create_dataset:

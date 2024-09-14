@@ -17,6 +17,8 @@ def map_annotation(annotation):
     labels = annotation.lower().split(";")
     if "clean" in labels:
         labels = ["clean"]
+    else:
+        labels = ["junk"]
     # else:
     #    if len(labels) > 1:
     #        labels = ["other junk"]
