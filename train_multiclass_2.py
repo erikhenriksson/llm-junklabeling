@@ -12,11 +12,13 @@ from transformers import (
     TrainingArguments,
 )
 from datasets import Dataset, DatasetDict
+from datasets import load_from_disk
 from dotenv import load_dotenv
 
 load_dotenv()
 
 testing = os.getenv("TEST_CLASSIFIER") == "1"
+create_dataset = os.getenv("CREATE_DATASET") == "1"
 model_name = "xlm-roberta-base"
 tokenizer = XLMRobertaTokenizer.from_pretrained(model_name)
 
@@ -31,29 +33,33 @@ if not testing:
         model_name, num_labels=5
     )
     model.resize_token_embeddings(len(tokenizer))
-
-# Example usage
-X_train, y_train, X_test, y_test, X_dev, y_dev = (
-    get_data_for_training_encoder_2.get_dataset(
-        "output/fineweb_annotated_gpt4_multi_1.jsonl"
+if create_dataset:
+    # Example usage
+    X_train, y_train, X_test, y_test, X_dev, y_dev = (
+        get_data_for_training_encoder_2.get_dataset(
+            "output/fineweb_annotated_gpt4_multi_1.jsonl"
+        )
     )
-)
 
-X_train = np.array(X_train)
-y_train = np.array(y_train)
-X_test = np.array(X_test)
-y_test = np.array(y_test)
-X_dev = np.array(X_dev)
-y_dev = np.array(y_dev)
+    X_train = np.array(X_train)
+    y_train = np.array(y_train)
+    X_test = np.array(X_test)
+    y_test = np.array(y_test)
+    X_dev = np.array(X_dev)
+    y_dev = np.array(y_dev)
 
-train_dataset = Dataset.from_dict({"text": X_train, "labels": y_train})
-dev_dataset = Dataset.from_dict({"text": X_dev, "labels": y_dev})
-test_dataset = Dataset.from_dict({"text": X_test, "labels": y_test})
+    train_dataset = Dataset.from_dict({"text": X_train, "labels": y_train})
+    dev_dataset = Dataset.from_dict({"text": X_dev, "labels": y_dev})
+    test_dataset = Dataset.from_dict({"text": X_test, "labels": y_test})
 
-# Combine into DatasetDict
-dataset_dict = DatasetDict(
-    {"train": train_dataset, "dev": dev_dataset, "test": test_dataset}
-)
+    # Combine into DatasetDict
+    dataset_dict = DatasetDict(
+        {"train": train_dataset, "dev": dev_dataset, "test": test_dataset}
+    )
+
+else:
+    # Load the dataset from the saved directory
+    ataset_dict = load_from_disk("path_to_save")
 
 from collections import Counter
 
@@ -74,6 +80,8 @@ test_distribution = get_label_distribution(dataset_dict["test"])
 print("Train Label Distribution:", train_distribution)
 print("Dev Label Distribution:", dev_distribution)
 print("Test Label Distribution:", test_distribution)
+
+dataset_dict.save_to_disk("dataset")
 
 
 # Tokenize the context windows
