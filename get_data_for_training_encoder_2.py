@@ -154,6 +154,8 @@ def get_dataset(file_path):
         labels += [unique_sorted_labels.index(x) for x in doc[1]]
         texts += create_context_window(doc[0], window_size=1)
 
+    print("context windows ready")
+
     # Convert lists to numpy arrays
     X = np.array(
         texts
