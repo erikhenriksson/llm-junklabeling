@@ -91,15 +91,18 @@ def create_context_window(document, window_size):
 
     num_lines = len(document)
     for i in range(num_lines):
-        start = max(0, i - window_size)
-        end = min(num_lines, i + window_size + 1)
+        if not window_size:
+            window = [document[i]]
+        else:
+            start = max(0, i - window_size)
+            end = min(num_lines, i + window_size + 1)
 
-        # Get the context window and mark the target line
-        window = (
-            document[start:i]
-            + [f"[TARGET_START] {document[i]} [TARGET_END]"]
-            + document[i + 1 : end]
-        )
+            # Get the context window and mark the target line
+            window = (
+                document[start:i]
+                + [f"[TARGET_START] {document[i]} [TARGET_END]"]
+                + document[i + 1 : end]
+            )
 
         # Join the window into a single string
         window_text = " ".join(window)
@@ -165,7 +168,7 @@ def get_dataset(file_path):
 
     for doc in parsed_data:
         labels += [unique_sorted_labels.index(x) for x in doc[1]]
-        texts += create_context_window(doc[0], window_size=1)
+        texts += create_context_window(doc[0], window_size=0)
 
     print("context windows ready")
 
