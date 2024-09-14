@@ -56,10 +56,11 @@ if create_dataset:
     dataset_dict = DatasetDict(
         {"train": train_dataset, "dev": dev_dataset, "test": test_dataset}
     )
+    dataset_dict.save_to_disk("dataset")
 
 else:
     # Load the dataset from the saved directory
-    ataset_dict = load_from_disk("dataset")
+    dataset_dict = load_from_disk("dataset")
 
 from collections import Counter
 
@@ -80,8 +81,6 @@ test_distribution = get_label_distribution(dataset_dict["test"])
 print("Train Label Distribution:", train_distribution)
 print("Dev Label Distribution:", dev_distribution)
 print("Test Label Distribution:", test_distribution)
-
-dataset_dict.save_to_disk("dataset")
 
 
 # Tokenize the context windows
