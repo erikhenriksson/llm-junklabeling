@@ -110,7 +110,7 @@ def create_context_window(document, window_size):
 
 
 def downsample_zero_indices(X, Y, percentage):
-    clean_i = 1
+    clean_i = 0
     # Find indices where Y equals 0
     zero_indices = [i for i, y in enumerate(Y) if y == clean_i]
 
