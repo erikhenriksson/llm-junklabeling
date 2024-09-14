@@ -109,7 +109,7 @@ def create_context_window(document, window_size):
     return context_windows
 
 
-def downsample_class(X, Y, M, downsample_ratio=0.1, random_seed=42):
+def downsample_class(X, Y, M, downsample_ratio=0.25, random_seed=42):
 
     np.random.seed(random_seed)  # For reproducibility
 
@@ -175,7 +175,7 @@ def get_dataset(file_path):
     )  # Features (assuming text representation, which may need further preprocessing)
     Y = np.array(labels)  # Multilabel targets
 
-    X, Y = downsample_class(X, Y, 0, 0.1)
+    X, Y = downsample_class(X, Y, 0)
 
     # First, split the data into train (70%) and a temporary set (30%)
     X_train, X_temp, Y_train, Y_temp = train_test_split(
