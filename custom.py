@@ -108,16 +108,16 @@ class DataCollatorWithPaddingAndTargetMask:
 
 
 import torch.nn as nn
-from transformers import RobertaConfig, RobertaModel, PreTrainedModel
+from transformers import XLMRobertaConfig, XLMRobertaModel, XLMRobertaPreTrainedModel
 
 
-class CustomRobertaForSequenceClassification(PreTrainedModel):
-    config_class = RobertaConfig
+class CustomXLMRobertaForSequenceClassification(XLMRobertaPreTrainedModel):
+    config_class = XLMRobertaConfig
 
     def __init__(self, config):
         super().__init__(config)
         self.num_labels = config.num_labels
-        self.roberta = RobertaModel(config)
+        self.roberta = XLMRobertaModel(config)
         self.classifier = nn.Linear(config.hidden_size, config.num_labels)
         self.init_weights()
 
@@ -178,32 +178,34 @@ class CustomDataCollator:
         self.tokenizer = tokenizer
         self.padding = padding
         self.max_length = max_length
-        
+
     def __call__(self, features):
         # Extract labels
-        labels = [feature['labels'] for feature in features]
-        
+        labels = [feature["labels"] for feature in features]
+
         # Extract input_ids, attention_mask, target_mask
-        input_ids = [feature['input_ids'] for feature in features]
-        attention_masks = [feature['attention_mask'] for feature in features]
-        target_masks = [feature['target_mask'] for feature in features]
-        
+        input_ids = [feature["input_ids"] for feature in features]
+        attention_masks = [feature["attention_mask"] for feature in features]
+        target_masks = [feature["target_mask"] for feature in features]
+
         # Pad input_ids and attention_masks using tokenizer.pad
         batch = self.tokenizer.pad(
-            {'input_ids': input_ids, 'attention_mask': attention_masks},
+            {"input_ids": input_ids, "attention_mask": attention_masks},
             padding=self.padding,
             max_length=self.max_length,
-            return_tensors='pt',
+            return_tensors="pt",
         )
-        
+
         # Pad target_masks manually
-        max_seq_length = batch['input_ids'].shape[1]
-        padded_target_masks = torch.zeros((len(target_masks), max_seq_length), dtype=torch.long)
+        max_seq_length = batch["input_ids"].shape[1]
+        padded_target_masks = torch.zeros(
+            (len(target_masks), max_seq_length), dtype=torch.long
+        )
         for i, mask in enumerate(target_masks):
             length = len(mask)
             padded_target_masks[i, :length] = torch.tensor(mask, dtype=torch.long)
-        
-        batch['target_mask'] = padded_target_masks
-        batch['labels'] = torch.tensor(labels, dtype=torch.long)
-        
+
+        batch["target_mask"] = padded_target_masks
+        batch["labels"] = torch.tensor(labels, dtype=torch.long)
+
         return batch
