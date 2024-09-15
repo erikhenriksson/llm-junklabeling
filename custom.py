@@ -1,6 +1,6 @@
 import torch
 from torch.utils.data import Dataset
-from transformers import RobertaTokenizer
+from sklearn.metrics import classification_report, f1_score
 
 
 class CustomTextDataset(Dataset):
@@ -170,6 +170,28 @@ def compute_metrics(eval_pred):
         "precision": precision,
         "recall": recall,
         "f1": f1,
+    }
+
+
+def compute_metrics(p):
+    predictions, labels = p
+    preds = np.argmax(predictions, axis=1)
+
+    # Calculate micro and macro F1 scores
+    micro_f1 = f1_score(labels, preds, average="micro")
+    macro_f1 = f1_score(labels, preds, average="macro")
+
+    # Generate classification report to inspect per-class metrics
+    class_report = classification_report(labels, preds, output_dict=True)
+
+    # You can log or print the classification report
+    print("Classification Report:")
+    print(classification_report(labels, preds))
+
+    return {
+        "micro_f1": micro_f1,
+        "macro_f1": macro_f1,
+        "class_report": class_report,  # Include the detailed per-class report
     }
 
 
