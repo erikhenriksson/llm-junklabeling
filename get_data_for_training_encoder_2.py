@@ -14,19 +14,10 @@ def clean_annotation(annotation):
 
 
 def map_annotation(annotation):
-    labels = annotation.lower().split(";")
-    if "clean" in labels:
-        labels = ["clean"]
-    else:
-        labels = ["junk"]
-    # else:
-    #    if len(labels) > 1:
-    #        labels = ["other junk"]
+    label = annotation.lower()
 
-    label = labels[0]
-
-    if label in ["garbled", "code"]:
-        label = "other junk"
+    if label != "clean":
+        label = "junk"
 
     return label
 
@@ -112,7 +103,7 @@ def create_context_window(document, window_size):
     return context_windows
 
 
-def downsample_class(X, Y, M, downsample_ratio=0.25, random_seed=42):
+def downsample_class(X, Y, M, downsample_ratio=0.3, random_seed=42):
 
     np.random.seed(random_seed)  # For reproducibility
 

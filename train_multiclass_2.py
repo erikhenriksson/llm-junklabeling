@@ -37,7 +37,7 @@ if create_dataset:
     # Example usage
     X_train, y_train, X_test, y_test, X_dev, y_dev = (
         get_data_for_training_encoder_2.get_dataset(
-            "output/fineweb_annotated_gpt4_multi_1.jsonl"
+            "output/fineweb_annotated_gpt4_multi_2.jsonl"
         )
     )
 
