@@ -24,7 +24,7 @@ create_dataset = os.getenv("CREATE_DATASET") == "1"
 model_name = "xlm-roberta-base"
 tokenizer = XLMRobertaTokenizer.from_pretrained(model_name)
 
-model = custom.CustomRobertaForSequenceClassification.from_pretrained(
+model = custom.CustomXLMRobertaForSequenceClassification.from_pretrained(
     model_name, num_labels=2
 )
 
