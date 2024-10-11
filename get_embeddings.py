@@ -1,3 +1,7 @@
+import os
+
+os.environ["HF_HOME"] = ".hf/hf_home"
+
 import torch
 import json
 import pandas as pd
